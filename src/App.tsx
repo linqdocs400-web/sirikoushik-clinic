@@ -923,10 +923,6 @@ function Treatments() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
   };
 
-  const [emblaRef] = useEmblaCarousel({ dragFree: true }, [
-    AutoScroll({ stopOnInteraction: false, stopOnMouseEnter: true, speed: 0.8 })
-  ]);
-
   return (
     <section id="treatments" className="py-20 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
@@ -944,16 +940,16 @@ function Treatments() {
           </div>
         </motion.div>
 
-        <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" ref={emblaRef}>
+        <div className="mt-12 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex lg:grid lg:grid-cols-4 gap-5 min-w-max lg:min-w-0 cursor-grab active:cursor-grabbing lg:cursor-auto"
+            className="flex lg:grid lg:grid-cols-4 gap-5 min-w-max lg:min-w-0"
           >
             {TREATMENT_GROUPS.map((g) => (
-              <motion.div key={g.title} variants={itemVariants} className="bg-cream border border-ink/8 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] w-[280px] sm:w-[320px] lg:w-full shrink-0 group hover:shadow-lg transition-shadow duration-500">
+              <motion.div key={g.title} variants={itemVariants} className="snap-start bg-cream border border-ink/8 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] w-[280px] sm:w-[320px] lg:w-full shrink-0 group hover:shadow-lg transition-shadow duration-500">
                 <span className="inline-block transition-transform duration-500 group-hover:scale-110">
                   <Icon name={g.icon} className="w-6 h-6 text-ink" />
                 </span>
