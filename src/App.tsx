@@ -484,19 +484,19 @@ function Hero() {
           {/* Copy */}
           <div className="pb-10 lg:pb-16">
             <div className="font-script text-3xl text-ink-soft animate-fade-in-up">welcome</div>
-            <h1 className="font-display text-[40px] sm:text-6xl lg:text-7xl leading-[1.02] text-ink mt-2 tracking-tight animate-fade-in-up" style={{animationDelay: '0.1s'}}>
+            <h1 className="font-display text-[40px] sm:text-6xl lg:text-7xl leading-[1.02] text-ink mt-2 tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               Advanced Skin, Hair
               <br className="hidden sm:block" /> &amp; Laser Care
             </h1>
-            <div className="font-script text-3xl sm:text-4xl text-ink-soft/90 mt-3 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            <div className="font-script text-3xl sm:text-4xl text-ink-soft/90 mt-3 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               for every stage of life.
             </div>
-            <p className="mt-6 max-w-xl text-ink/70 text-[15px] leading-relaxed animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+            <p className="mt-6 max-w-xl text-ink/70 text-[15px] leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               Expert dermatology, trichology, cosmetic and laser treatments —
               delivered with precision, care and the trust of thousands of patients
               across Hyderabad.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+            <div className="mt-8 flex flex-wrap gap-3 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <a
                 href="https://wa.me/918985504044?text=Hi,%20I%20am%20from%20your%20website.%20I%20would%20like%20to%20book%20an%20appointment."
                 target="_blank"
@@ -530,7 +530,7 @@ function Hero() {
       {/* Specialty marquee */}
       <div className="bg-rose/30 border-y border-ink/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-5 overflow-hidden">
-          <div className="flex items-center gap-8 sm:gap-12 text-ink font-display text-lg sm:text-xl whitespace-nowrap animate-[marquee_28s_linear_infinite]">
+          <div className="flex items-center gap-8 sm:gap-12 text-ink font-display text-lg sm:text-xl whitespace-nowrap animate-marquee">
             {[...SPECIALTIES, ...SPECIALTIES].map((s, i) => (
               <span key={i} className="flex items-center gap-8 sm:gap-12">
                 <span className="italic">{s}</span>
@@ -540,8 +540,6 @@ function Hero() {
           </div>
         </div>
       </div>
-
-      <style>{`@keyframes marquee {from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
     </section>
   );
 }
@@ -582,7 +580,7 @@ function About() {
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div>
           <div className="font-script text-2xl text-ink-soft animate-fade-in-right">Hi, I'm</div>
-          <h2 className="font-display text-5xl lg:text-6xl text-ink mt-2 animate-fade-in-right" style={{animationDelay: '0.1s'}}>Dr. Koushik</h2>
+          <h2 className="font-display text-5xl lg:text-6xl text-ink mt-2 animate-fade-in-right" style={{ animationDelay: '0.1s' }}>Dr. Koushik</h2>
           <div className="mt-3 text-[11px] tracking-[0.28em] text-ink/60 uppercase">
             MBBS · MD Dermatology · Dermatosurgeon
           </div>
@@ -624,14 +622,14 @@ function About() {
             alt="Treatment result"
             className="col-span-2 row-span-2 col-start-5 row-start-1 object-cover w-full h-full shadow-lg animate-pop-in"
             loading="lazy"
-            style={{animationDelay: '0.2s'}}
+            style={{ animationDelay: '0.2s' }}
           />
           <img
             src="https://images.unsplash.com/photo-1559599189-fe84dea4eb79?w=600&q=70&auto=format&fit=crop"
             alt="Hair restoration"
             className="col-span-2 row-span-2 col-start-1 row-start-5 object-cover w-full h-full shadow-lg animate-pop-in"
             loading="lazy"
-            style={{animationDelay: '0.4s'}}
+            style={{ animationDelay: '0.4s' }}
           />
         </div>
       </div>
@@ -661,12 +659,12 @@ function WhyUs() {
           <p className="mt-4 text-ink/70 max-w-xl mx-auto text-sm">
             Ten reasons patients across Hyderabad trust us with their skin and hair.
           </p>
-          <div className="mt-12 lg:grid lg:grid-cols-5 gap-px bg-ink/10 border border-ink/10 max-w-6xl mx-auto overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex lg:grid lg:grid-cols-5 gap-px min-w-max lg:min-w-0">
+          <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-w-6xl mx-auto block">
+            <div className="flex lg:grid lg:grid-cols-5 gap-px lg:gap-4 lg:bg-transparent lg:border-0 bg-ink/10 border border-ink/10 min-w-max lg:min-w-0">
               {REASONS.map((r) => (
                 <div
                   key={r.t}
-                  className="bg-cream p-6 sm:p-8 flex flex-col items-center text-center gap-4 min-h-[180px] justify-center w-[160px] sm:w-[200px] lg:w-auto shrink-0"
+                  className="bg-cream p-6 sm:p-8 flex flex-col items-center text-center gap-4 min-h-[180px] justify-center w-[160px] sm:w-[200px] lg:w-full shrink-0 lg:shadow-sm lg:border lg:border-ink/10"
                 >
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-ink text-cream">
                     <Icon name={r.i} className="w-6 h-6" />
@@ -782,10 +780,10 @@ function Treatments() {
             </h2>
           </div>
         </div>
-        <div className="mt-12 lg:grid lg:grid-cols-4 gap-5 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex lg:grid lg:grid-cols-4 gap-5 min-w-max lg:min-w-0">
             {TREATMENT_GROUPS.map((g) => (
-              <div key={g.title} className="bg-cream border border-ink/8 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] w-[280px] sm:w-[320px] lg:w-auto shrink-0">
+              <div key={g.title} className="bg-cream border border-ink/8 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] w-[280px] sm:w-[320px] lg:w-full shrink-0">
                 <Icon name={g.icon} className="w-6 h-6 text-ink" />
                 <h3 className="font-display text-xl text-ink mt-5">{g.title}</h3>
                 <div className="mt-2 h-px w-10 bg-ink/30" />
@@ -914,7 +912,7 @@ function Testimonials() {
           </h2>
         </div>
         <div className="mt-12 overflow-hidden">
-          <div className="flex gap-5 animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
+          <div className="flex gap-5 animate-scroll hover:[animation-play-state:paused]">
             {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
               <figure key={`${t.name}-${i}`} className="bg-cream border border-ink/10 p-6 flex flex-col w-[280px] sm:w-[320px] shrink-0">
                 <div className="text-[oklch(0.55_0.05_150)] tracking-widest text-sm">★★★★★</div>
@@ -933,7 +931,6 @@ function Testimonials() {
           </div>
         </div>
       </div>
-      <style>{`@keyframes scroll {from{transform:translateX(0)}to{transform:translateX(-33.33%)}}`}</style>
     </section>
   );
 }
@@ -944,14 +941,13 @@ function Gallery() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10 text-center">
         <div className="font-script text-2xl text-ink-soft">our space</div>
         <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">Inside the clinic.</h2>
-        <div className="mt-12 lg:grid lg:grid-cols-4 gap-3 sm:gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex lg:grid lg:grid-cols-4 gap-3 sm:gap-4 min-w-max lg:min-w-0">
             {GALLERY.map((src, i) => (
               <div
                 key={i}
-                className={`overflow-hidden bg-ink/10 shrink-0 ${
-                  i === 2 ? "row-span-2 aspect-[3/4] w-[200px] sm:w-[250px]" : i === 5 ? "col-span-2 aspect-[3/2] w-[400px] sm:w-[500px]" : "aspect-square w-[200px] sm:w-[250px]"
-                }`}
+                className={`overflow-hidden bg-ink/10 shrink-0 ${i === 2 ? "row-span-2 aspect-[3/4] lg:h-full w-[200px] sm:w-[250px] lg:w-full" : i === 5 ? "col-span-2 aspect-[3/2] lg:h-full w-[400px] sm:w-[500px] lg:w-full" : "aspect-square lg:h-full w-[200px] sm:w-[250px] lg:w-full"
+                  }`}
               >
                 <img
                   src={src}
@@ -1034,21 +1030,21 @@ function InfoRow({
 
 function Footer() {
   return (
-    <footer className="bg-[oklch(0.22_0.015_150)] text-cream/80 mt-20">
+    <footer className="bg-[oklch(0.22_0.015_150)] text-white mt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16 grid gap-10 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-full border border-cream/30">
-              <span className="font-display italic text-[oklch(0.78_0.1_70)]">SK</span>
+            <div className="grid h-10 w-10 place-items-center rounded-full border border-white/30">
+              <span className="font-display italic text-white/90">SK</span>
             </div>
             <div>
-              <div className="font-display italic text-lg text-cream">Siri &amp; Koushik's</div>
-              <div className="text-[10px] tracking-[0.32em] text-cream/60">
+              <div className="font-display italic text-lg text-white">Siri &amp; Koushik's</div>
+              <div className="text-[10px] tracking-[0.32em] text-white/60">
                 SKIN · HAIR · LASER
               </div>
             </div>
           </div>
-          <p className="mt-5 text-sm leading-relaxed max-w-sm">
+          <p className="mt-5 text-sm leading-relaxed max-w-sm text-white/80">
             Where skin meets confidence. A premium dermatology clinic offering medical,
             surgical and aesthetic care in Hyderabad.
           </p>
@@ -1058,7 +1054,7 @@ function Footer() {
                 key={i}
                 href="#contact"
                 aria-label={i}
-                className="grid h-10 w-10 place-items-center border border-cream/25 hover:bg-cream hover:text-ink transition"
+                className="grid h-10 w-10 place-items-center border border-white/25 text-white/80 hover:bg-white hover:text-ink transition"
               >
                 <Icon name={i} className="w-4 h-4" />
               </a>
@@ -1066,13 +1062,13 @@ function Footer() {
           </div>
         </div>
         <div>
-          <div className="text-[10px] tracking-[0.3em] uppercase text-cream/60">
+          <div className="text-[10px] tracking-[0.3em] uppercase text-white/60">
             Quick Links
           </div>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-5 space-y-3 text-sm text-white/80">
             {NAV.map((n) => (
               <li key={n.label}>
-                <a href={n.href} className="hover:text-cream">
+                <a href={n.href} className="hover:text-white transition">
                   {n.label}
                 </a>
               </li>
@@ -1080,8 +1076,8 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <div className="text-[10px] tracking-[0.3em] uppercase text-cream/60">Contact</div>
-          <div className="mt-5 space-y-2 text-sm">
+          <div className="text-[10px] tracking-[0.3em] uppercase text-white/60">Contact</div>
+          <div className="mt-5 space-y-2 text-sm text-white/80">
             <p>Dilsukhnagar, Hyderabad – 500060</p>
             <p>+91 8985504044</p>
             <p>Mon–Sat · 6:30–9:30 PM</p>
@@ -1089,8 +1085,8 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-cream/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-5 text-center text-xs text-cream/55">
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-5 text-center text-xs text-white/55">
           © {new Date().getFullYear()} Siri &amp; Koushik's Skin Hair STD Clinic. All rights reserved.
         </div>
       </div>

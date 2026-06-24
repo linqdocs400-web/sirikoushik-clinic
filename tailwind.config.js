@@ -55,6 +55,20 @@ export default {
         script: ["var(--font-script)", "serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
       },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        scroll: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-33.33%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 28s linear infinite",
+        scroll: "scroll 30s linear infinite",
+      },
     },
   },
   plugins: [],
