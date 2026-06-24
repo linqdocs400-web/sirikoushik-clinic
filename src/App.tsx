@@ -1,5 +1,23 @@
 import { useRef, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
+
 import doctorImg from "./assets/doctor.png";
+import acneImg from "./assets/acne.png";
+import alopeciaAreataImg from "./assets/ANDROGENETIC ALOPECIA.png";
+import psoriasisImg from "./assets/Palmar Psoriasis.jpeg";
+import hairlossImg from "./assets/hairloss.png";
+import melasmaImg from "./assets/melasma.png";
+
+import result1Img from "./assets/result1.png";
+import result2Img from "./assets/result2.png";
+import result3Img from "./assets/result3.png";
+import result4Img from "./assets/result4.png";
+import result5Img from "./assets/result5.png";
+
+import beforeImg from "./assets/before.png";
+import afterImg from "./assets/after.png";
 
 /* ------------------------------ Data ------------------------------ */
 
@@ -39,37 +57,37 @@ const CONDITIONS = [
   {
     name: "Acne",
     blurb: "Pimples, blackheads, whiteheads, cysts.",
-    img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=70&auto=format&fit=crop",
+    img: acneImg,
   },
   {
     name: "Acne Scars",
     blurb: "Pitted or raised scars, uneven texture.",
-    img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=70&auto=format&fit=crop",
+    img: acneImg,
   },
   {
     name: "Hair Fall",
     blurb: "Daily shedding, thinning, widening parting.",
-    img: "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=70&auto=format&fit=crop",
+    img: hairlossImg,
   },
   {
     name: "Alopecia Areata",
     blurb: "Patchy hair loss on scalp or beard.",
-    img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=900&q=70&auto=format&fit=crop",
+    img: alopeciaAreataImg,
   },
   {
     name: "Hair Regrowth",
     blurb: "Receding hairline, crown thinning.",
-    img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=900&q=70&auto=format&fit=crop",
+    img: hairlossImg,
   },
   {
     name: "Pigmentation",
     blurb: "Melasma, sun spots, uneven tone.",
-    img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=70&auto=format&fit=crop",
+    img: melasmaImg,
   },
   {
     name: "Psoriasis",
     blurb: "Scaly, red, inflamed patches.",
-    img: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=900&q=70&auto=format&fit=crop",
+    img: psoriasisImg,
   },
 ];
 
@@ -138,31 +156,31 @@ const RESULTS = [
     label: "Hair Transplant",
     meta: "1 SESSION",
     sub: "Receded hairline",
-    img: "https://images.unsplash.com/photo-1582015752624-e8b1c75e3711?w=900&q=70&auto=format&fit=crop",
+    img: result1Img,
   },
   {
     label: "Pigmentation Removal",
     meta: "6 SESSIONS",
     sub: "Sun-induced melasma",
-    img: "https://images.unsplash.com/photo-1610465299993-e6675c9f9efa?w=900&q=70&auto=format&fit=crop",
+    img: result2Img,
   },
   {
     label: "Psoriasis Care",
     meta: "3 MONTHS",
     sub: "Scalp psoriasis",
-    img: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?w=900&q=70&auto=format&fit=crop",
+    img: result3Img,
   },
   {
     label: "Alopecia Recovery",
     meta: "5 SESSIONS",
     sub: "Patchy hair loss",
-    img: "https://images.unsplash.com/photo-1559599189-fe84dea4eb79?w=900&q=70&auto=format&fit=crop",
+    img: result4Img,
   },
   {
     label: "Acne Clearance",
     meta: "4 SESSIONS",
     sub: "Inflamed acne",
-    img: "https://images.unsplash.com/photo-1573461160327-b450ce3d8e7f?w=900&q=70&auto=format&fit=crop",
+    img: result5Img,
   },
 ];
 
@@ -454,12 +472,22 @@ function Header() {
 }
 
 function Hero() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, dragFree: true }, [
+    AutoScroll({ stopOnInteraction: false, stopOnMouseEnter: true, speed: 1.2 })
+  ]);
+
   return (
     <section id="about" className="relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 pt-10 lg:pt-16">
         <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-14 items-end">
           {/* Portrait */}
-          <div className="relative animate-slide-in-right">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
             <div className="absolute -top-6 -left-2 lg:-left-6 w-40 h-44 border border-ink/15 hidden sm:block" />
             <div className="relative overflow-hidden bg-panel">
               <img
@@ -470,7 +498,13 @@ function Hero() {
                 height={1536}
               />
             </div>
-            <div className="absolute -bottom-5 -left-2 lg:left-6 bg-cream shadow-[0_18px_40px_-20px_rgba(0,0,0,0.25)] p-4 pr-6 max-w-[260px] hidden sm:block">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+              className="absolute -bottom-5 -left-2 lg:left-6 bg-cream shadow-[0_18px_40px_-20px_rgba(0,0,0,0.25)] p-4 pr-6 max-w-[260px] hidden sm:block"
+            >
               <div className="text-[oklch(0.72_0.08_70)] tracking-widest">★★★★★</div>
               <p className="mt-2 text-[13px] leading-snug text-ink/90">
                 "Genuinely the most thoughtful dermatologist I've met."
@@ -478,25 +512,55 @@ function Hero() {
               <div className="mt-2 text-[10px] tracking-[0.24em] text-ink/55">
                 — VERIFIED PATIENT
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Copy */}
           <div className="pb-10 lg:pb-16">
-            <div className="font-script text-3xl text-ink-soft animate-fade-in-up">welcome</div>
-            <h1 className="font-display text-[40px] sm:text-6xl lg:text-7xl leading-[1.02] text-ink mt-2 tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="font-script text-3xl text-ink-soft"
+            >welcome</motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-display text-[40px] sm:text-6xl lg:text-7xl leading-[1.02] text-ink mt-2 tracking-tight"
+            >
               Advanced Skin, Hair
               <br className="hidden sm:block" /> &amp; Laser Care
-            </h1>
-            <div className="font-script text-3xl sm:text-4xl text-ink-soft/90 mt-3 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-script text-3xl sm:text-4xl text-ink-soft/90 mt-3"
+            >
               for every stage of life.
-            </div>
-            <p className="mt-6 max-w-xl text-ink/70 text-[15px] leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-6 max-w-xl text-ink/70 text-[15px] leading-relaxed"
+            >
               Expert dermatology, trichology, cosmetic and laser treatments —
               delivered with precision, care and the trust of thousands of patients
               across Hyderabad.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-8 flex flex-wrap gap-3"
+            >
               <a
                 href="https://wa.me/918985504044?text=Hi,%20I%20am%20from%20your%20website.%20I%20would%20like%20to%20book%20an%20appointment."
                 target="_blank"
@@ -511,7 +575,7 @@ function Hero() {
               >
                 Explore Treatments
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -527,16 +591,18 @@ function Hero() {
         </div>
       </div>
 
-      {/* Specialty marquee */}
-      <div className="bg-rose/30 border-y border-ink/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-5 overflow-hidden">
-          <div className="flex items-center gap-8 sm:gap-12 text-ink font-display text-lg sm:text-xl whitespace-nowrap animate-marquee">
-            {[...SPECIALTIES, ...SPECIALTIES].map((s, i) => (
-              <span key={i} className="flex items-center gap-8 sm:gap-12">
-                <span className="italic">{s}</span>
-                <span className="text-ink/30">◆</span>
-              </span>
-            ))}
+      {/* Specialty marquee with Embla + Framer */}
+      <div className="bg-rose/30 border-y border-ink/5 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-5">
+          <div ref={emblaRef} className="cursor-grab active:cursor-grabbing overflow-hidden">
+            <div className="flex items-center gap-8 sm:gap-12 text-ink font-display text-lg sm:text-xl whitespace-nowrap min-w-max">
+              {[...SPECIALTIES, ...SPECIALTIES].map((s, i) => (
+                <span key={i} className="flex items-center gap-8 sm:gap-12 pl-8 sm:pl-12">
+                  <span className="italic">{s}</span>
+                  <span className="text-ink/30">◆</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -548,8 +614,11 @@ function Stat({ n, l }: { n: string; l: string }) {
   const [count, setCount] = useState(0);
   const target = parseInt(n.replace(/\D/g, ''));
   const suffix = n.replace(/[\d]/g, '');
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
+    if (!isInView) return;
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;
@@ -564,23 +633,28 @@ function Stat({ n, l }: { n: string; l: string }) {
       }
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [target]);
+  }, [isInView, target]);
 
   return (
-    <div>
+    <motion.div ref={ref} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
       <div className="font-display text-4xl sm:text-5xl">{count}{suffix}</div>
       <div className="mt-1 text-[10px] tracking-[0.3em] uppercase opacity-80">{l}</div>
-    </div>
+    </motion.div>
   );
 }
 
 function About() {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-20 lg:py-28">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-20 lg:py-28 overflow-hidden">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-        <div>
-          <div className="font-script text-2xl text-ink-soft animate-fade-in-right">Hi, I'm</div>
-          <h2 className="font-display text-5xl lg:text-6xl text-ink mt-2 animate-fade-in-right" style={{ animationDelay: '0.1s' }}>Dr. Koushik</h2>
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="font-script text-2xl text-ink-soft">Hi, I'm</div>
+          <h2 className="font-display text-5xl lg:text-6xl text-ink mt-2">Dr. Koushik</h2>
           <div className="mt-3 text-[11px] tracking-[0.28em] text-ink/60 uppercase">
             MBBS · MD Dermatology · Dermatosurgeon
           </div>
@@ -610,26 +684,36 @@ function About() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
         <div className="relative grid grid-cols-6 grid-rows-6 gap-3 min-h-[380px] lg:min-h-[520px]">
-          <img
+          <motion.img
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             src={doctorImg}
             alt="Dr. Koushik in clinic"
-            className="col-span-4 row-span-6 col-start-2 row-start-1 object-cover w-full h-full animate-pop-in"
+            className="col-span-4 row-span-6 col-start-2 row-start-1 object-cover w-full h-full"
           />
-          <img
+          <motion.img
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=70&auto=format&fit=crop"
             alt="Treatment result"
-            className="col-span-2 row-span-2 col-start-5 row-start-1 object-cover w-full h-full shadow-lg animate-pop-in"
+            className="col-span-2 row-span-2 col-start-5 row-start-1 object-cover w-full h-full shadow-lg"
             loading="lazy"
-            style={{ animationDelay: '0.2s' }}
           />
-          <img
+          <motion.img
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             src="https://images.unsplash.com/photo-1559599189-fe84dea4eb79?w=600&q=70&auto=format&fit=crop"
             alt="Hair restoration"
-            className="col-span-2 row-span-2 col-start-1 row-start-5 object-cover w-full h-full shadow-lg animate-pop-in"
+            className="col-span-2 row-span-2 col-start-1 row-start-5 object-cover w-full h-full shadow-lg"
             loading="lazy"
-            style={{ animationDelay: '0.4s' }}
           />
         </div>
       </div>
@@ -648,31 +732,63 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function WhyUs() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <section id="why">
       <SectionLabel>why us ?</SectionLabel>
-      <div className="bg-sage mt-10 py-16 lg:py-24">
+      <div className="bg-sage mt-10 py-16 lg:py-24 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 text-center">
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink">
+          <motion.h2
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink"
+          >
             A higher standard of <br /> dermatology.
-          </h2>
-          <p className="mt-4 text-ink/70 max-w-xl mx-auto text-sm">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: 0.2 }}
+            className="mt-4 text-ink/70 max-w-xl mx-auto text-sm"
+          >
             Ten reasons patients across Hyderabad trust us with their skin and hair.
-          </p>
+          </motion.p>
           <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-w-6xl mx-auto block">
-            <div className="flex lg:grid lg:grid-cols-5 gap-px lg:gap-4 lg:bg-transparent lg:border-0 bg-ink/10 border border-ink/10 min-w-max lg:min-w-0">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="flex lg:grid lg:grid-cols-5 gap-px lg:gap-4 lg:bg-transparent lg:border-0 bg-ink/10 border border-ink/10 min-w-max lg:min-w-0"
+            >
               {REASONS.map((r) => (
-                <div
+                <motion.div
                   key={r.t}
-                  className="bg-cream p-6 sm:p-8 flex flex-col items-center text-center gap-4 min-h-[180px] justify-center w-[160px] sm:w-[200px] lg:w-full shrink-0 lg:shadow-sm lg:border lg:border-ink/10"
+                  variants={itemVariants}
+                  className="bg-cream p-6 sm:p-8 flex flex-col items-center text-center gap-4 min-h-[180px] justify-center w-[160px] sm:w-[200px] lg:w-full shrink-0 lg:shadow-sm lg:border lg:border-ink/10 group cursor-default"
                 >
-                  <span className="grid h-14 w-14 place-items-center rounded-full bg-ink text-cream">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-ink text-cream transition-transform duration-500 group-hover:scale-110">
                     <Icon name={r.i} className="w-6 h-6" />
                   </span>
                   <div className="font-display text-lg text-ink leading-tight">{r.t}</div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -691,22 +807,33 @@ function HorizontalRail({
   title: string;
   children: React.ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
+
   const scroll = (dir: 1 | -1) => {
-    const el = ref.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" });
+    if (!emblaApi) return;
+    if (dir === -1) emblaApi.scrollPrev();
+    else emblaApi.scrollNext();
   };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
   return (
-    <section id={id} className="py-20 lg:py-28 bg-panel/60">
+    <section id={id} className="py-20 lg:py-28 bg-panel/60 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <div className="font-script text-2xl text-ink-soft">{label}</div>
             <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2 max-w-xl leading-tight">
               {title}
             </h2>
-          </div>
+          </motion.div>
           <div className="flex gap-2">
             <button
               onClick={() => scroll(-1)}
@@ -725,10 +852,18 @@ function HorizontalRail({
           </div>
         </div>
         <div
-          ref={ref}
-          className="mt-10 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          ref={emblaRef}
+          className="mt-10 overflow-hidden"
         >
-          {children}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex gap-5 cursor-grab active:cursor-grabbing"
+          >
+            {children}
+          </motion.div>
         </div>
       </div>
     </section>
@@ -736,67 +871,104 @@ function HorizontalRail({
 }
 
 function Conditions() {
+  const itemVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <HorizontalRail id="conditions" label="conditions" title="Diseases we treat.">
       {CONDITIONS.map((c) => (
-        <article
+        <motion.article
+          variants={itemVariants}
           key={c.name}
-          className="snap-start shrink-0 w-[78%] sm:w-[44%] lg:w-[26%]"
+          className="shrink-0 w-[78%] sm:w-[50%] lg:w-[32%]"
         >
-          <div className="relative aspect-[3/4] overflow-hidden bg-ink/10 group">
+          <div className="relative aspect-[3/4] overflow-hidden bg-ink/10 group rounded-[4px]">
             <img
               src={c.img}
               alt={c.name}
               loading="lazy"
-              className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+              className="w-full h-full object-cover group-hover:scale-110 transition duration-1000"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <h3 className="absolute bottom-4 left-5 font-display text-2xl text-cream">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-90 group-hover:opacity-100 transition duration-500" />
+            <h3 className="absolute bottom-4 left-5 font-display text-2xl text-cream transform translate-y-2 group-hover:translate-y-0 transition duration-500">
               {c.name}
             </h3>
           </div>
-          <p className="mt-4 text-sm text-ink/65">{c.blurb}</p>
+          <p className="mt-4 text-sm text-ink/65 pl-1">{c.blurb}</p>
           <a
             href="#contact"
-            className="mt-3 inline-block text-[11px] tracking-[0.28em] uppercase text-ink hover:text-ink-soft"
+            className="mt-3 inline-block text-[11px] tracking-[0.28em] uppercase text-ink hover:text-ink-soft pl-1 transition-colors"
           >
             Learn more ›
           </a>
-        </article>
+        </motion.article>
       ))}
     </HorizontalRail>
   );
 }
 
 function Treatments() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
+  };
+
+  const [emblaRef] = useEmblaCarousel({ dragFree: true }, [
+    AutoScroll({ stopOnInteraction: false, stopOnMouseEnter: true, speed: 0.8 })
+  ]);
+
   return (
-    <section id="treatments" className="py-20 lg:py-28">
+    <section id="treatments" className="py-20 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          className="flex flex-wrap items-end justify-between gap-6"
+        >
           <div>
             <div className="font-script text-2xl text-ink-soft">treatments</div>
             <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2 max-w-xl leading-tight">
               Treatments crafted around you.
             </h2>
           </div>
-        </div>
-        <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex lg:grid lg:grid-cols-4 gap-5 min-w-max lg:min-w-0">
+        </motion.div>
+
+        <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" ref={emblaRef}>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex lg:grid lg:grid-cols-4 gap-5 min-w-max lg:min-w-0 cursor-grab active:cursor-grabbing lg:cursor-auto"
+          >
             {TREATMENT_GROUPS.map((g) => (
-              <div key={g.title} className="bg-cream border border-ink/8 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] w-[280px] sm:w-[320px] lg:w-full shrink-0">
-                <Icon name={g.icon} className="w-6 h-6 text-ink" />
+              <motion.div key={g.title} variants={itemVariants} className="bg-cream border border-ink/8 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] w-[280px] sm:w-[320px] lg:w-full shrink-0 group hover:shadow-lg transition-shadow duration-500">
+                <span className="inline-block transition-transform duration-500 group-hover:scale-110">
+                  <Icon name={g.icon} className="w-6 h-6 text-ink" />
+                </span>
                 <h3 className="font-display text-xl text-ink mt-5">{g.title}</h3>
-                <div className="mt-2 h-px w-10 bg-ink/30" />
+                <div className="mt-2 h-px w-10 bg-ink/30 transition-all duration-500 group-hover:w-full group-hover:bg-ink/15" />
                 <ul className="mt-5 space-y-2.5 text-sm text-ink/75">
                   {g.items.map((i) => (
                     <li key={i} className="flex gap-2">
-                      <span className="text-ink/40">•</span> {i}
+                      <span className="text-ink/40 transition-colors duration-300 group-hover:text-ink/80">•</span> {i}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -804,19 +976,24 @@ function Treatments() {
 }
 
 function Results() {
+  const itemVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <HorizontalRail id="results" label="real results" title="Real results. Real confidence.">
       {RESULTS.map((r) => (
-        <article key={r.label} className="snap-start shrink-0 w-[78%] sm:w-[44%] lg:w-[26%]">
-          <div className="aspect-[4/3] overflow-hidden bg-ink/10">
-            <img src={r.img} alt={r.label} loading="lazy" className="w-full h-full object-cover" />
+        <motion.article variants={itemVariants} key={r.label} className="shrink-0 w-[85%] sm:w-[55%] lg:w-[40%] group">
+          <div className="aspect-[4/3] overflow-hidden bg-ink/10 rounded-[4px]">
+            <img src={r.img} alt={r.label} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition duration-1000" />
           </div>
-          <div className="mt-4 text-[10px] tracking-[0.3em] uppercase text-ink/55">
+          <div className="mt-4 text-[10px] tracking-[0.3em] uppercase text-ink/55 pl-1 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
             {r.meta}
           </div>
-          <h3 className="font-display text-xl text-ink mt-1">{r.label}</h3>
-          <p className="text-sm text-ink/60">{r.sub}</p>
-        </article>
+          <h3 className="font-display text-xl text-ink mt-1 pl-1 transition-transform duration-500 group-hover:translate-x-1">{r.label}</h3>
+          <p className="text-sm text-ink/60 pl-1">{r.sub}</p>
+        </motion.article>
       ))}
     </HorizontalRail>
   );
@@ -856,8 +1033,8 @@ function BeforeAfter() {
           style={{ touchAction: 'none' }}
         >
           <img
-            src="https://images.unsplash.com/photo-1582015752624-e8b1c75e3711?w=1400&q=75&auto=format&fit=crop"
-            alt="After hair restoration"
+            src={afterImg}
+            alt="After"
             className="absolute inset-0 w-full h-full object-cover"
             draggable={false}
           />
@@ -866,8 +1043,8 @@ function BeforeAfter() {
             style={{ width: `${pos}%` }}
           >
             <img
-              src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1400&q=75&auto=format&fit=crop"
-              alt="Before hair restoration"
+              src={beforeImg}
+              alt="Before"
               className="absolute inset-0 h-full w-[100vw] max-w-none object-cover"
               style={{ width: `${100 / (pos / 100)}%` }}
               draggable={false}
@@ -902,19 +1079,28 @@ function BeforeAfter() {
 }
 
 function Testimonials() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, dragFree: true }, [
+    AutoScroll({ stopOnInteraction: false, stopOnMouseEnter: true, speed: 1.5 })
+  ]);
+
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center"
+        >
           <div className="font-script text-2xl text-ink-soft">testimonials</div>
           <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">
             Loved by our patients.
           </h2>
-        </div>
-        <div className="mt-12 overflow-hidden">
-          <div className="flex gap-5 animate-scroll hover:[animation-play-state:paused]">
-            {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-              <figure key={`${t.name}-${i}`} className="bg-cream border border-ink/10 p-6 flex flex-col w-[280px] sm:w-[320px] shrink-0">
+        </motion.div>
+        <div className="mt-12" ref={emblaRef}>
+          <div className="flex gap-5 cursor-grab active:cursor-grabbing">
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+              <figure key={`${t.name}-${i}`} className="bg-cream border border-ink/10 p-6 flex flex-col w-[280px] sm:w-[320px] shrink-0 pl-5">
                 <div className="text-[oklch(0.55_0.05_150)] tracking-widest text-sm">★★★★★</div>
                 <blockquote className="mt-4 text-[13px] leading-relaxed text-ink/85 flex-1">
                   "{t.q}"
@@ -936,16 +1122,38 @@ function Testimonials() {
 }
 
 function Gallery() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10 text-center">
-        <div className="font-script text-2xl text-ink-soft">our space</div>
-        <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">Inside the clinic.</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <div className="font-script text-2xl text-ink-soft">our space</div>
+          <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">Inside the clinic.</h2>
+        </motion.div>
         <div className="mt-12 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex lg:grid lg:grid-cols-4 gap-3 sm:gap-4 min-w-max lg:min-w-0">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex lg:grid lg:grid-cols-4 gap-3 sm:gap-4 min-w-max lg:min-w-0"
+          >
             {GALLERY.map((src, i) => (
-              <div
+              <motion.div
                 key={i}
+                variants={itemVariants}
                 className={`overflow-hidden bg-ink/10 shrink-0 ${i === 2 ? "row-span-2 aspect-[3/4] lg:h-full w-[200px] sm:w-[250px] lg:w-full" : i === 5 ? "col-span-2 aspect-[3/2] lg:h-full w-[400px] sm:w-[500px] lg:w-full" : "aspect-square lg:h-full w-[200px] sm:w-[250px] lg:w-full"
                   }`}
               >
@@ -953,11 +1161,11 @@ function Gallery() {
                   src={src}
                   alt=""
                   loading="lazy"
-                  className="w-full h-full object-cover hover:scale-105 transition duration-700"
+                  className="w-full h-full object-cover hover:scale-110 transition duration-1000"
                 />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
