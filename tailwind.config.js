@@ -52,8 +52,8 @@ export default {
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],
-        script: ["var(--font-script)", "serif"],
-        sans: ["Inter", "system-ui", "sans-serif"],
+        script: ["var(--font-script)", "cursive"],
+        sans: ["Montserrat", "sans-serif"],
       },
       keyframes: {
         marquee: {
